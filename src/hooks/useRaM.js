@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-function useRaM (url) {
+export function useRaM (url) {
   const [rickAndMortyInfo, setRickAndMortyInfo] = useState([])
 
   useEffect(() => {
@@ -15,5 +15,3 @@ function useRaM (url) {
 
   return { rickAndMortyInfo }
 }
-
-export default useRaM

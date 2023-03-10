@@ -1686,3 +1686,8 @@ body>footer {
 li {
   list-style: none;
 }
+
+main section {
+  display: grid;
+  grid-template-columns: (1fr, 3);
+}
