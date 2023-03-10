@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react'
 
-function useRaM () {
+function useRaM (url) {
   const [rickAndMortyInfo, setRickAndMortyInfo] = useState([])
-  const [endpoint, endpointValue] = useState()
 
   useEffect(() => {
-    endpointValue(() => {
-
-    })
-    async function RaMAPIFetch (endpoint = 'character') {
-      const res = await fetch(`https://rickandmortyapi.com/api/${endpoint}`)
+    async function RaMAPIFetch () {
+      const res = await fetch(url)
       const data = await res.json()
       const { results } = data
       setRickAndMortyInfo(results)
@@ -17,7 +13,7 @@ function useRaM () {
     RaMAPIFetch()
   }, [])
 
-  return { rickAndMortyInfo, endpoint }
+  return { rickAndMortyInfo }
 }
 
 export default useRaM

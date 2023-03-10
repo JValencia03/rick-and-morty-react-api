@@ -1,27 +1,27 @@
-import './App.css'
 import useRaM from './hooks/useRaM'
+import './App.css'
 
 function App () {
-  const { rickAndMortyInfo } = useRaM()
+  const { rickAndMortyInfo } = useRaM('https://rickandmortyapi.com/api/character')
 
   return (
     <div>
       <header>
         <h1>Rick and Mory API</h1>
         <ul>
-          <li><button>Characters</button></li>
-          <li><button>Locations</button></li>
-          <li><button>Episodes</button></li>
+          <li><a href='/character'>Characters</a></li>
+          <li><a href='/location'>Locations</a></li>
+          <li><a href='/episode'>Episodes</a></li>
         </ul>
       </header>
       <main>
         <section>
           {
-          rickAndMortyInfo?.map(character => {
+          rickAndMortyInfo && rickAndMortyInfo?.map(character => {
             return (
               <div key={character.id}>
                 <h3>{character.name}</h3>
-                <p>{character.location.name}</p>
+                <p>{character.name}</p>
                 <img src={character.image} alt={character.name} />
               </div>
             )
