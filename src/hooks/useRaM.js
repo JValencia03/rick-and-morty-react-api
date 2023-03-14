@@ -1,17 +1,23 @@
 import { useEffect, useState } from 'react'
 
-export function useRaM (url) {
+export function useRaM (resource) {
   const [rickAndMortyInfo, setRickAndMortyInfo] = useState([])
-
+  const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
     async function RaMAPIFetch () {
-      const res = await fetch(url)
-      const data = await res.json()
-      const { results } = data
-      setRickAndMortyInfo(results)
+      setIsLoading(false)
+      try {
+        const res = await fetch(`https://rickandmortyapi.com/api/${resource}`)
+        const data = await res.json()
+        const { results } = data
+        setRickAndMortyInfo(results)
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setIsLoading(false)
+      }
     }
     RaMAPIFetch()
-  }, [])
-
-  return { rickAndMortyInfo }
+  }, [resource])
+  return { rickAndMortyInfo, isLoading }
 }

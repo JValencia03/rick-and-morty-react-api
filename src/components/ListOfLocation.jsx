@@ -1,23 +1,21 @@
 import { useRaM } from '../hooks/useRaM'
 
 export function ListOfLocation () {
-  const { rickAndMortyInfo } = useRaM('https://rickandmortyapi.com/api/location')
+  const { rickAndMortyInfo } = useRaM('location')
 
   return (
-    <main>
-      <section>
-        {
-      rickAndMortyInfo && rickAndMortyInfo?.map(character => {
+    <section className='grid grid-cols-4 gap-6'>
+      {
+      rickAndMortyInfo && rickAndMortyInfo?.map(location => {
         return (
-          <div key={character.id}>
-            <h3>{character.name}</h3>
-            <p>{character.name}</p>
-            <img src={character.image} alt={character.name} />
+          <div key={location.id}>
+            <h3>{location.name}</h3>
+            <p>{location.type}</p>
+            <p>{location.dimension}</p>
           </div>
         )
       })
     }
-      </section>
-    </main>
+    </section>
   )
 }
